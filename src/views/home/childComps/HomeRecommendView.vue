@@ -29,14 +29,16 @@
   display: flex;
   padding: 10px 0 20px;
   border-bottom: 8px solid #eee;
+
 }
   .recommendItem{
     flex: 1;
     text-align: center;
-font-size: 12px;
+    font-size: 12px;
   }
   .recommendItem img{
     width: 80%;
     margin-bottom: 5px;
+
   }
 </style>
