@@ -25,6 +25,7 @@
     methods:{
       updataCurrent(index){
         this.currentIndex=index;
+        this.$emit('tabClick',index);
       }
     }
   }
@@ -37,6 +38,8 @@
   font-size: 18px;
   height: 40px;
   line-height: 40px;
+
+
 }
   .tab-control .item{
     text-align: center;
