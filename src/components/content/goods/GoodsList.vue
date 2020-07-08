@@ -20,7 +20,7 @@
       GoodsListItem
     },
     created() {
-      console.log('goodsList',this.goodsList)
+      // console.log('goodsList',this.goodsList)
     }
   }
 </script>
