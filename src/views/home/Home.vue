@@ -68,7 +68,7 @@
         tabControlOffsetTop:0,
         isTabFixed:false, //tab是否吸顶
         saveY:0, //离开页面时的Y坐标
-
+        itemListener:null,
       }
     },
     components: {
@@ -89,16 +89,14 @@
       }
     },
     mounted() {
-
       let myDebounce = debounce(this.$refs.Scroll.refresh,50);
-      //采用事件总线 监听item中图片加载完成
-      this.$bus.$on('itemImgLoad',()=>{
+
+      this.itemListener=()=>{
         // this.$refs.Scroll.refresh();
         myDebounce();
-      })
-
-
-
+      }
+      //采用事件总线 监听item中图片加载完成
+      this.$bus.$on('itemImgLoad',this.itemListener)
     },
     created() {
       this.getHomeMUltidata();
@@ -204,12 +202,16 @@
      */
     activated() {
       // console.log('进入:',this.saveY)
-      this.saveY=this.$refs.Scroll.scrollTo(0,this.saveY,0)
+      this.$refs.Scroll.scrollTo(0,this.saveY,100)
       this.$refs.Scroll.refresh();
     },
     deactivated() {
       // console.log('离开:',this.$refs.Scroll.getScrollY())
+      // 保存Y坐标
       this.saveY=this.$refs.Scroll.getScrollY()
+
+      //取消全局事件的监听
+      this.$bus.$off('itemImgLoad',this.itemListener)
     }
   }
 </script>

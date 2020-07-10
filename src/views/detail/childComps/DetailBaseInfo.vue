@@ -55,7 +55,7 @@
     display: flex;
 
     .newPrice{
-      font-size: 30px;
+      font-size: 28px;
       color: var(--color-tint);
     }
 
@@ -87,11 +87,14 @@
   .services{
     display: flex;
     align-items: center;
+    align-content:space-around;
     justify-content: space-between;
-    margin-top: 30px;
+    flex-wrap: wrap;
+    margin: 30px 0;
     .services-item{
       display: flex;
       align-items: center;
+      font-size: 15px;
       img{
         width: 15px;
       }

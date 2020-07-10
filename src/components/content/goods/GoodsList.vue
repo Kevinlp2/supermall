@@ -19,6 +19,7 @@
     components:{
       GoodsListItem
     },
+
     created() {
       // console.log('goodsList',this.goodsList)
     }

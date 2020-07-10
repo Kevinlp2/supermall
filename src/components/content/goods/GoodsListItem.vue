@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item" @click="itemClick()">
-    <img :src="goodsItem.show.img" alt="" @load="imgLoad" >
+    <img :src="showImage" alt="" @load="imgLoad" >
     <div class="goods-info">
       <p class="title">{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}} </span>
@@ -30,6 +30,11 @@
           path:'/detail',
           query:{'iid':this.goodsItem.iid}
         })
+      }
+    },
+    computed:{
+      showImage(){
+        return this.goodsItem.image || this.goodsItem.show.img
       }
     },
     created() {
