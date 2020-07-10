@@ -7,6 +7,7 @@ const  home=()=>import('views/home/Home')
 const  classa=()=>import('views/classa/Classa')
 const  shopping=()=>import('views/shopping/Shopping')
 const  archives=()=>import('views/archives/Archives')
+const  detail=()=>import('views/detail/Detail')
 
 const VueRouter= new Router({
   routes: [
@@ -29,7 +30,12 @@ const VueRouter= new Router({
     {
       path:'/archives',
       component:archives
-    }
+    },
+    {
+      path:'/detail',
+      name:'detail',
+      component:detail
+    },
   ],
   mode:'history'
 })

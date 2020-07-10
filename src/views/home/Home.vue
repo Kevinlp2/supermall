@@ -203,10 +203,12 @@
      * deactivated：离开时执行
      */
     activated() {
+      // console.log('进入:',this.saveY)
       this.saveY=this.$refs.Scroll.scrollTo(0,this.saveY,0)
       this.$refs.Scroll.refresh();
     },
     deactivated() {
+      // console.log('离开:',this.$refs.Scroll.getScrollY())
       this.saveY=this.$refs.Scroll.getScrollY()
     }
   }

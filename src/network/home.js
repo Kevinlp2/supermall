@@ -6,7 +6,7 @@ export function getHomeMUltidata() {
     url:'/home/multidata'
   })
 }
-
+// 获取所有商品信息
 export function getHomeGoods(type,page) {
   return request({
     url:'/home/data',
@@ -16,3 +16,5 @@ export function getHomeGoods(type,page) {
     }
   })
 }
+
+
