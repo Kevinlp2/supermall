@@ -1,6 +1,6 @@
 <template>
 <!--  商品详情页评论-->
-    <div class="comment">
+    <div v-if="Object.keys(commentInfo).length !==0" class="comment">
       <div class="info-header">
         <div class="header-title">用户评论</div>
         <div class="header-more">
@@ -46,7 +46,7 @@
     // 监听数据的变化
     watch:{
       commentInfo(){
-        // console.log(this.commentInfo)
+        // console.log('用户评论',this.commentInfo)
       }
     }
   }

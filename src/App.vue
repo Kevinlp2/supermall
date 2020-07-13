@@ -4,7 +4,6 @@
     <keep-alive exclude="Detail">
       <router-view></router-view>
     </keep-alive>
-
     <MainTabBar/>
   </div>
 </template>
@@ -20,6 +19,9 @@ export default {
   },
   components: {
     MainTabBar
+  },
+  created() {
+
   }
 }
 </script>

@@ -8,7 +8,7 @@
     <tab-control ref="tabControl1" :titles="['流行','新款','精选']"
                  @tabClick="tabClick" v-show="isTabFixed"/>
     <!--    使用移动端滚动插件better-scroll-->
-    <scroll class="content" ref="Scroll" :probe-type="3" :pull-up-load="true"
+    <scroll class="content" ref="scroll" :probe-type="3" :pull-up-load="true"
             @scroll="contentScroll" @pullingUp="pullingUp">
 
       <!--轮播图-->
@@ -51,6 +51,7 @@
   import {getHomeMUltidata, getHomeGoods} from "../../network/home";
 
   import {debounce} from "common/utils";
+  import {itemListenerMixin} from "common/mixin";
   export default {
     name: "Home",
     data() {
@@ -82,6 +83,7 @@
       HomeFeaTureView,
       GoodsList
     },
+    mixins:[itemListenerMixin],
     // 计算属性
     computed: {
       showGoods() {
@@ -89,16 +91,18 @@
       }
     },
     mounted() {
-      let myDebounce = debounce(this.$refs.Scroll.refresh,50);
-
-      this.itemListener=()=>{
-        // this.$refs.Scroll.refresh();
-        myDebounce();
-      }
-      //采用事件总线 监听item中图片加载完成
-      this.$bus.$on('itemImgLoad',this.itemListener)
+      // let myDebounce = debounce(this.$refs.Scroll.refresh,50);
+      //
+      // this.itemListener=()=>{
+      //   // this.$refs.Scroll.refresh();
+      //   myDebounce();
+      // }
+      // //采用事件总线 监听item中图片加载完成
+      // this.$bus.$on('itemImgLoad',this.itemListener)
     },
     created() {
+
+
       this.getHomeMUltidata();
       //获取商品数据
       this.getHomeGoods('pop')
@@ -110,7 +114,6 @@
        * 事件监听方法
        * @param index
        */
-
       //商品切换点击事件
       tabClick(index) {
         switch (index) {
@@ -137,7 +140,7 @@
          * 参数二：Y坐标
          * 参数三：返回相应坐标的时间，单位为毫秒
          */
-        this.$refs.Scroll.scrollTo(0,0,500);
+        this.$refs.scroll.scrollTo(0,0,500);
       },
       //实时监听滚动事件
       contentScroll(position){
@@ -186,7 +189,7 @@
           this.goods[type].page += 1
 
           //实现多次下拉加载
-          this.$refs.Scroll.finishPullUp();
+          this.$refs.scroll.finishPullUp();
         })
       },
 
@@ -202,13 +205,13 @@
      */
     activated() {
       // console.log('进入:',this.saveY)
-      this.$refs.Scroll.scrollTo(0,this.saveY,100)
-      this.$refs.Scroll.refresh();
+      this.$refs.scroll.scrollTo(0,this.saveY,100)
+      this.$refs.scroll.refresh();
     },
     deactivated() {
       // console.log('离开:',this.$refs.Scroll.getScrollY())
       // 保存Y坐标
-      this.saveY=this.$refs.Scroll.getScrollY()
+      this.saveY=this.$refs.scroll.getScrollY()
 
       //取消全局事件的监听
       this.$bus.$off('itemImgLoad',this.itemListener)

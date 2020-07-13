@@ -8,7 +8,7 @@
 <!--        标题-->
         <div slot="center" class="title">
           <div class="titleItem" v-for="(item,index) in titles"
-          :class="{active:index===currentIndex}" @click="itemClick(index)">
+          :class="{active:index===curIndex}" @click="itemClick(index)">
             {{item}}
           </div>
         </div>
@@ -23,20 +23,31 @@
       components:{
         NavBar
       },
+      props:{
+        currentIndex:0
+      },
       data(){
         return{
           titles:['商品','参数','评论','推荐'],
-          currentIndex:0
+          curIndex:this.currentIndex
         }
       },
       methods:{
         // 标题切换点击事件
         itemClick(index){
-          this.currentIndex=index;
+          this.curIndex=index;
+
+          this.$emit('navBarClick',this.curIndex)
         },
         // 返回按钮点击事件
         blackIconClick(){
           this.$router.back();
+        }
+      },
+      // 监听数据的变化
+      watch:{
+        currentIndex(){
+          this.curIndex=this.currentIndex
         }
       }
     }
