@@ -22,7 +22,7 @@
     <goods-list ref="recommend" :goodsList="recommends"/>
   </scroll>
 
-  <detail-bottom-bar/>
+  <detail-bottom-bar @addToCart="addToCart"/>
 <!--  返回顶部组件-->
   <back-top v-show="backTopIsShow" @click.native="backTop"/>
 </div>
@@ -83,6 +83,20 @@
       // 混入配置
       mixins:[itemListenerMixin],
       methods:{
+        // 点击加入购物车
+        addToCart(){
+          //获取购物车需要展示的信息
+          const product={};
+          product.image=this.topImgs[0];
+          product.title=this.goodsInfo.title;
+          product.desc=this.goodsInfo.desc;
+          product.price=this.goodsInfo.newPrice;
+          product.iid=this.iid;
+          product.checked=true;
+
+          // 将商品加入购物车,vuex
+          this.$store.dispatch('addCart',product)
+        },
         //点击顶部导航栏滚动页面方法
         navBarClick(currentIndex){
           // console.log('点击参数',currentIndex)
