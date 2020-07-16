@@ -21,10 +21,11 @@
     <!-- 推荐 -->
     <goods-list ref="recommend" :goodsList="recommends"/>
   </scroll>
-
   <detail-bottom-bar @addToCart="addToCart"/>
 <!--  返回顶部组件-->
   <back-top v-show="backTopIsShow" @click.native="backTop"/>
+
+
 </div>
 </template>
 
@@ -78,6 +79,8 @@
           themTopYs:[0,0,0,0],
           getThemTopys:null,
           currentIndex:0,
+
+
         }
       },
       // 混入配置
@@ -95,7 +98,10 @@
           product.checked=true;
 
           // 将商品加入购物车,vuex
-          this.$store.dispatch('addCart',product)
+          this.$store.dispatch('addCart',product).then(res=>{
+            this.$toast.show(res);
+            // console.log(res)
+          });
         },
         //点击顶部导航栏滚动页面方法
         navBarClick(currentIndex){
@@ -137,7 +143,7 @@
         //访问后台获取商品详情
         getDetails(id){
           getDetail(id).then(res=>{
-            console.log('商品详情接口返回参数：',res)
+            // console.log('商品详情接口返回参数：',res)
             //获取顶部轮播图集合
             this.topImgs=res.result.itemInfo.topImages;
             //整合数据，获取商品详细信息

@@ -83,14 +83,17 @@
       HomeFeaTureView,
       GoodsList
     },
-    mixins:[itemListenerMixin],
+
+
     // 计算属性
     computed: {
       showGoods() {
         return this.goods[this.currentType].list;
       }
     },
+    mixins:[itemListenerMixin],
     mounted() {
+
       // let myDebounce = debounce(this.$refs.Scroll.refresh,50);
       //
       // this.itemListener=()=>{
@@ -100,6 +103,7 @@
       // //采用事件总线 监听item中图片加载完成
       // this.$bus.$on('itemImgLoad',this.itemListener)
     },
+
     created() {
 
 

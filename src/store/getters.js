@@ -27,7 +27,6 @@ export default {
   },
   // 返回商品总价格
   cartTotalPrice(state){
-
     // let totalprice=0;
     // for循环计算
     // for (const item of state.carList) {
@@ -45,14 +44,22 @@ export default {
     },0)
     return parseFloat(totalprice).toFixed(2);
   },
-  //返回商品是否全选
+  //返回购物车商品是否全选
   isSelectAll(state){
-    for (const item of state.carList) {
-      if(!item.checked){
-        return  false;
-      }
-    }
-    return true;
+    // for (const item of state.carList) {
+    //   if(!item.checked){
+    //     return  false;
+    //   }
+    // }
+    // return true;
+
+    // 过滤得到是否有没选中的数组长度，有长度就表示没有全选返回!length就是返回false,没有长度返回!0则返回true
+    // return !(state.carList.filter(item=>!item.checked).length)
+    // if(state.carList.length === 0) return false
+    // return !state.carList.find(item=>!item.checked)
+
+    return state.carList.length === 0 ? false : !state.carList.find(item=>!item.checked)
+
   }
 
 }

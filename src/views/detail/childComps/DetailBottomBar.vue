@@ -29,7 +29,7 @@
       // 点击加入购物车
       addToCart(){
         this.$emit('addToCart')
-        alert('添加成功')
+
       }
     }
   }
